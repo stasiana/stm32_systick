@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+mkdir -p build
+pushd build
+
+if [[ ! -f Makefile ]] ; then
+    cmake \
+        -DCMAKE_TOOLCHAIN_FILE=../src/arm-none-eabi-gcc.cmake \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        ../src
+fi
+
+popd build
